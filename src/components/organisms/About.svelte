@@ -1,19 +1,20 @@
 <script>
+	import { env } from '$env/dynamic/public';
 	import RichPresence from '../molecules/RichPresence.svelte';
 	import Tooltip from '../atoms/Tooltip.svelte';
 
-	// i didnt write this idk
+	const anNumbers = [8, 11, 18, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89];
+
+	// i didn't write this idk
 	let getAge = () => {
-		let birthDate = new Date('2007/03/24');
+		let birthDate = new Date(env.PUBLIC_BIRTH_DATE);
 		const ageMs = Date.now() - birthDate.getTime();
 		const preciseAge = (ageMs / 31536000000).toFixed(10);
 		return preciseAge;
 	};
 
 	let age = getAge();
-	setInterval(() => {
-		age = getAge();
-	}, 1000);
+	setInterval(() => (age = getAge()), 1000);
 </script>
 
 <section id="about" class="wrapper">
@@ -23,9 +24,8 @@
 	<div class="text">
 		<h2>bio</h2>
 		<p>
-			Hey there, I'm afn! :] I'm a <Tooltip tip={age}
-				><span>{Math.floor(Number(age))}</span></Tooltip
-			>
+			Hey there, I'm afn! :] I'm {anNumbers.includes(parseInt(age)) ? 'an' : 'a'}
+			<Tooltip tip={age}><span>{Math.floor(Number(age))}</span></Tooltip>
 			year old digital artist and graphic/UI designer based in Canada. I’ve taken art seriously since
 			<span>2017</span>, and have been doodling silly anime characters since <span>2020</span>.
 			Recently, however, I’ve grown a knack for programming. I like contributing to
@@ -72,7 +72,13 @@
 	}
 
 	.text::before {
-		@include outlineText($content: 'afn', $translateX: 97%, $translateY: -5%, $fontSize: 300px, $opacity: 0.22);
+		@include outlineText(
+			$content: 'afn',
+			$translateX: 97%,
+			$translateY: -5%,
+			$fontSize: 300px,
+			$opacity: 0.22
+		);
 	}
 
 	h2 {
