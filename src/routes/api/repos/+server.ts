@@ -1,7 +1,7 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from '@sveltejs/kit';
 import type { Edge, PinnedRepo } from '../../../util/types';
-import { env } from '$env/dynamic/private'
+import { env } from '$env/dynamic/private';
 
 async function getPinnedRepos(username: string): Promise<PinnedRepo[]> {
 	const query = `
@@ -53,9 +53,11 @@ async function getPinnedRepos(username: string): Promise<PinnedRepo[]> {
 export const GET: RequestHandler = async (event) => {
 	const repos = await getPinnedRepos('xafn');
 
-	event.setHeaders({
-		'Cache-Control': 'public, max-age=0, s-maxage=60'
-	});
+	if (!repos) {
+		console.error(`whoopsies`);
+		return new Response(null, { status: 502 });
+	}
 
+	event.setHeaders({ 'Cache-Control': 'public, max-age=0, s-maxage=60' });
 	return json(repos);
 };
