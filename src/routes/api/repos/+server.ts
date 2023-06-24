@@ -34,20 +34,29 @@ async function getPinnedRepos(username: string): Promise<PinnedRepo[]> {
     }
   `;
 
-	const response = await fetch('https://api.github.com/graphql', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-			'Authorization': `Bearer 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`
-		},
-		body: JSON.stringify({ query })
-	});
+	try {
+		const response = await fetch('https://api.github.com/graphql', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${env.SECRET_API_KEY}`
+			},
+			body: JSON.stringify({ query })
+		});
 
-	const json = await response.json();
-	const pinnedRepos: PinnedRepo[] = json.data.repositoryOwner.pinnedItems.edges.map(
-		(edge: Edge) => edge.node
-	);
-	return pinnedRepos;
+		if (!response.ok) {
+			throw new Error(`GraphQL request failed with status ${response.status}`);
+		}
+
+		const json = await response.json();
+		const pinnedRepos: PinnedRepo[] = json.data.repositoryOwner.pinnedItems.edges.map(
+			(edge: Edge) => edge.node
+		);
+		return pinnedRepos;
+	} catch (error) {
+		console.error('GraphQL request error:', error);
+		throw new Error('Failed to fetch pinned repositories!');
+	}
 }
 
 export const GET: RequestHandler = async (event) => {
