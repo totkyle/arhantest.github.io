@@ -34,11 +34,15 @@ async function getPinnedRepos(username: string): Promise<PinnedRepo[]> {
     }
   `;
 
+    if (!env.SECRET_API_KEY) {
+        console.log('h')
+    }
+    
 	const response = await fetch('https://api.github.com/graphql', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
-			Authorization: `Bearer ${env.SECRET_API_KEY}`
+			'Authorization': `Bearer ${env.SECRET_API_KEY}`
 		},
 		body: JSON.stringify({ query })
 	});
@@ -52,12 +56,6 @@ async function getPinnedRepos(username: string): Promise<PinnedRepo[]> {
 
 export const GET: RequestHandler = async (event) => {
 	const repos = await getPinnedRepos('xafn');
-
-	if (!repos) {
-		console.error(`whoopsies`);
-		return new Response(null, { status: 502 });
-	}
-
 	event.setHeaders({ 'Cache-Control': 'public, max-age=0, s-maxage=60' });
 	return json(repos);
 };
