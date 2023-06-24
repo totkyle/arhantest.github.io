@@ -87,15 +87,22 @@ export interface Root {
   }
   
 //--------------------------
-export interface Repo {
-	owner: string;
-	repo: string;
-	link: string;
+export interface PinnedRepo {
+	name: string;
+	owner: {
+		avatarUrl: string;
+		login: string;
+	};
+	stars: number;
+	forks: number;
+	url: string;
 	description: string;
-	image: string;
-	website: string;
-	language: string;
-	languageColor: string;
-	stars: string;
-	forks: any;
+	primaryLanguage: {
+		name: string;
+		color: string;
+	};
+}
+
+export interface Edge {
+	node: PinnedRepo;
 }
