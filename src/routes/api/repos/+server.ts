@@ -34,10 +34,6 @@ async function getPinnedRepos(username: string): Promise<PinnedRepo[]> {
     }
   `;
 
-    if (!env.SECRET_API_KEY) {
-        console.log('h')
-    }
-    
 	const response = await fetch('https://api.github.com/graphql', {
 		method: 'POST',
 		headers: {
@@ -55,7 +51,7 @@ async function getPinnedRepos(username: string): Promise<PinnedRepo[]> {
 }
 
 export const GET: RequestHandler = async (event) => {
-	const repos = await getPinnedRepos('xafn');
-	event.setHeaders({ 'Cache-Control': 'public, max-age=0, s-maxage=60' });
-	return json(repos);
+	// const repos = await getPinnedRepos('xafn');
+	// event.setHeaders({ 'Cache-Control': 'public, max-age=0, s-maxage=60' });
+	return json('hii');
 };
