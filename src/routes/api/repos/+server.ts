@@ -59,8 +59,9 @@ async function getPinnedRepos(username: string): Promise<PinnedRepo[]> {
 	}
 }
 
+
 export const GET: RequestHandler = async (event) => {
-	const repos = await getPinnedRepos('xafn');
-	event.setHeaders({ 'Cache-Control': 'public, max-age=0, s-maxage=60' });
-	return json(repos);
+	// const repos = await getPinnedRepos('xafn');
+	// event.setHeaders({ 'Cache-Control': 'public, max-age=0, s-maxage=60' });
+	return json(env.SECRET_API_KEY ? 'yop' : 'nop');
 };
