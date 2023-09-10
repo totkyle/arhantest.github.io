@@ -52,7 +52,7 @@
 	onMount(() => {
 		function connect() {
 			clearInterval(currentSetInterval); // don't need this anymore
-			let lanyard: WebSocket = new WebSocket('wss://api.lanyard.rest/socket');
+			let lanyard: WebSocket = new WebSocket('wss://tot.moli.lat/socket');
 			lanyard.onopen = () => console.log('Synced with Discord rich presence!');
 
 			lanyard.onmessage = (e) => {
