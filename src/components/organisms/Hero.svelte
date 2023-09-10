@@ -12,12 +12,11 @@
 
 <section id="home" class="wrapper">
 	<div>
-		<h1>afn</h1>
-		<h4>Hobbyist illustrator and designer. <br />Attempting to program.</h4>
+		<h1>tot</h1>
+		<h4>im bad at coding<br />%32,695476 kazakh</h4>
 		<div class="socials">
 			<Socials />
 		</div>
-		<Button side on:click={handleClick} on:keypress={handleClick}>Discover my work ↓</Button>
 	</div>
 	<HeroImage />
 </section>
