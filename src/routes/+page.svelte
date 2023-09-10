@@ -8,7 +8,6 @@
 	import Footer from '../components/molecules/Footer.svelte';
 </script>
 
-<NavHost />
 <main>
 	<Hero />
 	<About />
