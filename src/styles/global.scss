@@ -46,15 +46,15 @@ body.stop-transitions * {
 
 :root {
     --white: #eed1c7;
-    --white-two: hsl(0, 17%, 69%);
-    --yellow: #dba895;
-    --yellow-opacity: #dba8952a;
-    --bg-color: hsl(0, 11%, 8%);
-    --neutral-one: #211c1c;
-    --neutral-two: #211c1c75;
-    --neutral-three: #1e1a1a;
-    --neutral-four: rgba(123, 115, 115, 0.227);
-    --neutral-five: #1f1919ca;
+    --white-two: #5f82b9;
+    --yellow: #5f82b975;
+    --yellow-opacity: hsl(217, 39%, 55%);
+    --bg-color: hsl(215, 29%, 8%);
+    --neutral-one: #5f82b960;
+    --neutral-two: #5f82b975;
+    --neutral-three: #516b86;
+    --neutral-four: #516b86;
+    --neutral-five: #516b86;
     --font-one: "Space Grotesk", sans-serif;
     --font-two: "JetBrains Mono", monospace;
     --bezier-one: cubic-bezier(0.25, 0.46, 0.45, 0.94);
