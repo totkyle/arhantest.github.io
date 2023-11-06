@@ -13,7 +13,7 @@
 <section id="home" class="wrapper">
 	<div>
 		<h1>tot</h1>
-		<h4>im bad at coding<br />%32,695476 kazakh</h4>
+		<h4>im bad at coding<br />kzbb1337</h4>
 		<div class="socials">
 			<Socials />
 		</div>
